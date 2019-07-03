@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:text="${title}"></h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${alist} and ${alist.size()}">No list</p>
+<div><h1>Hello, rawr make an unordered list of category names.</h1>
+
+
+    <ul th:each="listitem : ${alist}">
+        <li th:text="${listitem.name}"></li>
+    </ul>
+    <a href="/category/add">Add Category</a>
+</div>
+</body>
+</html>

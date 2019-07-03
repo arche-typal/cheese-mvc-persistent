@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <form method="post" th:object="${form}">
+        <select name="cheeseId"> <!--<select th:field="*{id}">-->
+            <option value="">--</option>
+            <option th:each="cheese : ${menu.cheeses}"
+            th:value="${cheese.id}"
+            th:text="${cheese.name}"></option>
+        </select>
+        <input type="submit" value="Add A Cheese" />
+    </form>
+</body>
+</html>

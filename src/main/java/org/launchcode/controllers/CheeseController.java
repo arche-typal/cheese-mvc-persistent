@@ -1,7 +1,9 @@
 package org.launchcode.controllers;
 
+import org.launchcode.models.Category;
 import org.launchcode.models.Cheese;
-import org.launchcode.models.CheeseType;
+//import org.launchcode.models.CheeseType;
+import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.CheeseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ public class CheeseController {
     @Autowired
     private CheeseDao cheeseDao;
 
+    @Autowired
+    private CategoryDao categoryDao;
+
     // Request path: /cheese
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -38,20 +43,26 @@ public class CheeseController {
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
-        model.addAttribute("cheeseTypes", CheeseType.values());
+        //model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("categories", categoryDao.findAll());
         return "cheese/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
-                                       Errors errors, Model model) {
+                                       Errors errors, @RequestParam int categoryId, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
             return "cheese/add";
         }
 
+        //cheeseDao.save(newCheese);
+        //categoryDao.save(newCheese);
+        Category cat = categoryDao.findOne(categoryId);
+        newCheese.setCategory(cat);
         cheeseDao.save(newCheese);
+        //categoryDao.save();
         return "redirect:";
     }
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <h1>This is the add menu.</h1>
+    <form method="post" th:object="${menu}">
+        <div>
+            <label th:for="name"></label>
+            <input th:field="*{name}" />
+            <span th:errors="*{name}"></span>
+        </div>
+        <input type="submit" value="Add Menu" />
+
+    </form>
+
+</body>
+</html>
