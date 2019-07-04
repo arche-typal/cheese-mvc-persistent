@@ -6,26 +6,17 @@
 </head>
 <body>
     <form method="post" th:object="${form}">
-<<<<<<< Updated upstream
-        <select name="cheeseId"> <!--<select th:field="*{id}">-->
-            <option value="">--</option>
-            <option th:each="cheese : ${menu.cheeses}"
-            th:value="${cheese.id}"
-            th:text="${cheese.name}"></option>
-        </select>
-=======
         <div>
         <label th:for="cheeseId">Cheese</label>
-        <select th:field="cheeseId"> <!--<select th:field="*{id}">-->
-                                <!--<option value="">--</option>-->
-            <option th:each="cheese : ${cheeses}"
+        <select th:field="*{cheeseId}"> <!--<select th:field="*{id}">-->
+                                <!--<option value=""></option>-->
+            <option th:each="cheese : *{cheeses}"
             th:value="${cheese.id}"
             th:text="${cheese.name}"></option>
         </select>
         <input type="hidden" name="menuId" th:value="*{menu.id}" />
         <span th:errors="*{cheeseId}" class="error"></span>
         </div>
->>>>>>> Stashed changes
         <input type="submit" value="Add A Cheese" />
     </form>
 </body>
