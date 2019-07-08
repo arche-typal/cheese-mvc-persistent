@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body class="container">
+    <head th:replace="fragments :: head"></head>
+    <body>
+
+        <nav th:replace="fragments :: navigation"></nav>
     <h1>Hello, this is a list of menus.</h1>
     <div>
         <ul th:each="menu : ${menus}">
-            <li th:text="${menu.name}"></li>
+
+            <li><a th:href="'/menu/view/' + ${menu.id}" th:text="${menu.name}">View This Menu</a></li>
         </ul>
     <a href="/menu/add">Add Menu</a>
     </div>

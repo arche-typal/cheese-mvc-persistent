@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title th:text="${menu.name}"></title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
+    <title th:text="${menu.name}"></title>
+    <nav th:replace="fragments :: navigation"></nav>
+    <h1 th:text="${menu.name}">Default Title</h1>
     <ul th:each="cheese : ${menu.cheeses}">
         <li th:text="${cheese.name}"></li>
     </ul>
